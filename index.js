@@ -99,12 +99,8 @@ app.get('/api/users/:_id/logs', (req, res, next) => {
         if (error) res.status(500).json({ error })
         else {
             let logs = user.logs
-            if (from) {
-                logs = logs.filter(log => log.date >= from)
-            }
-            if (to) {
-                logs = logs.filter(log => log.date <= to)
-            }
+            if (from) logs = logs.filter(log => log.date >= from)
+            if (to) logs = logs.filter(log => log.date <= to)
             if (limit) logs = logs.slice(0, limit)
             logs = logs.map(log => {
                 return {
